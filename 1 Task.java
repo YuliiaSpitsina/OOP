@@ -1,7 +1,7 @@
 package OOP;
 
 class Hero {
-    private String name;
+    String name;
     public Hero (String name){
         this.name = name;
     }
@@ -10,14 +10,13 @@ class Hero {
     }
 
    public void attackEnemy(){
-        System.out.println("Герой атакує ворога");
+        System.out.println(name + " атакує ворога");
     }
 }
 
 public class TrainingGround {
     public static void main(String[] args) {
         Hero hero1 = new Hero("Foggy");
-     System.out.println(hero1.getName());
         hero1.attackEnemy();
     }
 }
