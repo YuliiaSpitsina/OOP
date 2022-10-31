@@ -1,0 +1,93 @@
+package OOP;
+class Enemy{
+    String name;
+    public static int health;
+
+    public Enemy (String name, int health){
+        this.name = name;
+        this.health = health;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public static int takeDamage(int damage){
+        health = health - damage;
+        return health;
+    }
+}
+abstract class Hero {
+    String name;
+   int damage;
+    public Hero (String name, int damage){
+        this.name = name;
+        this.damage = damage;
+
+    }
+    public String getName(){
+        return name;
+    }
+
+     public abstract void attackEnemy();
+}
+
+class Warrior extends Hero {
+    Warrior(String name, int damage) {
+        super(name, damage);
+    }
+    public void attackEnemy(){
+        System.out.println(name + " розмахує мечом і завдає "  + damage + " урону");
+        Enemy.takeDamage(damage);
+    }
+}
+
+class Mage extends Hero {
+    Mage(String name, int damage) {
+        super(name, damage);
+    }
+    public void attackEnemy(){
+        System.out.println(name + " викликає стовб світла і завдає "  + damage + " урону");
+        Enemy.takeDamage(damage);
+    }
+}
+class Archer extends Hero {
+   public Archer(String name, int damage) {
+        super(name, damage);
+    }
+    public void attackEnemy(){
+        System.out.println(name + " стріляє с лука і завдає " + damage + " урону");
+        Enemy.takeDamage(damage);
+    }
+}
+
+public class TrainingGround {
+    public static void main(String[] args) {
+        Enemy enemy1 = new Enemy("Greb", 25);
+
+        System.out.println ("Ворога звати " + enemy1.getName() +",а здоровья в нього " + enemy1.getHealth());
+
+        Warrior hero2 = new Warrior("Rory", 7);
+        hero2.attackEnemy();
+
+        Mage hero3 = new Mage("Soul", 4);
+        hero3.attackEnemy();
+
+        Archer hero4 = new Archer("John", 2);
+        hero4.attackEnemy();
+
+        System.out.println ("Здоровья ворога після атак " + enemy1.getHealth());
+    }
+}
