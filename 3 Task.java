@@ -56,7 +56,6 @@ class Enemy {
         System.out.println(name + " атакує ворога "  + damage + " урону");
         health.takeDamage(damage);
     }
-
 }
 
 class Warrior extends Hero {
@@ -104,6 +103,5 @@ public class TrainingGround {
         hero4.attackEnemy(enemy1);
 
         System.out.println ("Здоровья ворога після атак " + enemy1.getHealth());
-
     }
 }
