@@ -50,9 +50,7 @@ abstract class Hero {
     public String getName(){
         return name;
     }
-
      public abstract void attackEnemy(Enemy health);
-
 }
 
 class Warrior extends Hero {
