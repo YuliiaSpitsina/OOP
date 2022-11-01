@@ -1,13 +1,12 @@
 package OOP;
-class Enemy{
+class Enemy {
     String name;
-    public static int health;
+    int health;
 
     public Enemy (String name, int health){
         this.name = name;
         this.health = health;
     }
-
     public String getName() {
         return name;
     }
@@ -24,9 +23,20 @@ class Enemy{
         this.health = health;
     }
 
-    public static int takeDamage(int damage){
-        health = health - damage;
-        return health;
+    public int takeDamage(int damage){
+        if (health > 0) {
+            health = health - damage;
+            if (health > 0)
+            return health;
+            else {
+                health = 0;
+                return health;
+            }
+        }
+        else {
+            health = 0;
+            return health;
+        }
     }
 }
 abstract class Hero {
@@ -41,16 +51,17 @@ abstract class Hero {
         return name;
     }
 
-     public abstract void attackEnemy();
+     public abstract void attackEnemy(Enemy health);
+
 }
 
 class Warrior extends Hero {
     Warrior(String name, int damage) {
         super(name, damage);
     }
-    public void attackEnemy(){
+    public void attackEnemy(Enemy health){
         System.out.println(name + " розмахує мечом і завдає "  + damage + " урону");
-        Enemy.takeDamage(damage);
+        health.takeDamage(damage);
     }
 }
 
@@ -58,18 +69,18 @@ class Mage extends Hero {
     Mage(String name, int damage) {
         super(name, damage);
     }
-    public void attackEnemy(){
+    public void attackEnemy(Enemy health){
         System.out.println(name + " викликає стовб світла і завдає "  + damage + " урону");
-        Enemy.takeDamage(damage);
+        health.takeDamage(damage);
     }
 }
 class Archer extends Hero {
    public Archer(String name, int damage) {
         super(name, damage);
     }
-    public void attackEnemy(){
+    public void attackEnemy(Enemy health){
         System.out.println(name + " стріляє с лука і завдає " + damage + " урону");
-        Enemy.takeDamage(damage);
+        health.takeDamage(damage);
     }
 }
 
@@ -80,14 +91,15 @@ public class TrainingGround {
         System.out.println ("Ворога звати " + enemy1.getName() +",а здоровья в нього " + enemy1.getHealth());
 
         Warrior hero2 = new Warrior("Rory", 7);
-        hero2.attackEnemy();
+        hero2.attackEnemy(enemy1);
 
-        Mage hero3 = new Mage("Soul", 4);
-        hero3.attackEnemy();
+        Mage hero3 = new Mage("Soul", 2);
+        hero3.attackEnemy(enemy1);
 
-        Archer hero4 = new Archer("John", 2);
-        hero4.attackEnemy();
+        Archer hero4 = new Archer("John", 40);
+        hero4.attackEnemy(enemy1);
 
         System.out.println ("Здоровья ворога після атак " + enemy1.getHealth());
+
     }
 }
